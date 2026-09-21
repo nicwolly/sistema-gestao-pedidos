@@ -1,3 +1,4 @@
+// Representa um produto da cafeteria
 public class Produto {
     private int id;
     private String nome;
