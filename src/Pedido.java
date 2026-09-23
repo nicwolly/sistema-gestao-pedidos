@@ -5,6 +5,7 @@ public class Pedido {
     private int id;
     private Cliente cliente;
     private List<ItemPedido> carrinho;
+    private StatusPedido status;
 
     public Pedido(int id, Cliente cliente) {
         this.id = id;
@@ -14,22 +15,44 @@ public class Pedido {
             this.cliente = cliente;
         }
         this.carrinho = new ArrayList<>();
+        this.status = StatusPedido.PENDENTE;
     }
 
-    public int getId() {
-        return id;
+    public StatusPedido getStatus(){
+        return this.status;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void processar(){
+        if (this.status == StatusPedido.PENDENTE){
+            this.status = StatusPedido.PROCESSANDO;
+        } else {
+            System.out.println("Não é possível processar um pedido que não está pendente.");
+        }
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public void enviar(){
+        if (this.status == StatusPedido.PROCESSANDO){
+            this.status = StatusPedido.ENVIADO;
+        } else {
+            System.out.println("Não é possível enviar um pedido que não está processando.");
+        }
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void entregar(){
+        if (this.status == StatusPedido.ENVIADO){
+            this.status = StatusPedido.ENTREGUE;
+        } else {
+            System.out.println("Não é possível entregar um pedido que não foi enviado.");
+        }
+    }
+
+    public void cancelar(){
+        if (this.status == StatusPedido.PENDENTE
+                || this.status == StatusPedido.PROCESSANDO){
+            this.status = StatusPedido.CANCELADO;
+        } else {
+            System.out.println("Não é possível cancelar um pedido que não está pendente/processando.");
+        }
     }
 
     public List<ItemPedido> getcarrinho() {

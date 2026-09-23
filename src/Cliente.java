@@ -64,8 +64,4 @@ public class Cliente {
     public String toString() {
         return nome + " \nE-mail: (" + email + ")";
     }
-
-
-
-
 }

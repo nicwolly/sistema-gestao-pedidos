@@ -3,6 +3,7 @@ public class Produto {
     private int id;
     private String nome;
     private double preco;
+    private StatusPedido status;
 
     public Produto(int id, String nome, double preco) {
         this.id = id;
@@ -16,6 +17,14 @@ public class Produto {
         } else {
             System.out.println("Erro: O preço deve ser maior que zero.");
         }
+    }
+
+    public void setStatus(StatusPedido status) {
+        this.status = status;
+    }
+
+    public StatusPedido getStatus() {
+        return status;
     }
 
     public int getId() {
