@@ -18,7 +18,7 @@ public class Cafeteria {
 
         cadastroProdutos.cadastrarProduto(produto);
         System.out.println(cadastroProdutos.listarProdutos());
-        System.out.println(cadastroProdutos.buscarProdutoPorId(1).get());
+        System.out.println(cadastroProdutos.buscarProdutoPorId(6).get());
         System.out.println(cadastroProdutos.removerProdutos(1));
         System.out.println();
         cadastro.cadastrar(cliente);
@@ -27,12 +27,14 @@ public class Cafeteria {
         pedido.processar();
         System.out.println(pedido.getStatus());
 
-
+        pedido.enviar();
+        System.out.println(pedido.getStatus());
 
         pedido.entregar();
         System.out.println(pedido.getStatus());
 
         pedido.cancelar();
         System.out.println(pedido.getStatus());
+
     }
 }

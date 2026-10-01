@@ -8,17 +8,18 @@ public class CadastroClientes {
     public CadastroClientes() {
         this.clientes = new ArrayList<>();
     }
-
     public void cadastrar(Cliente cliente) {
         if (cliente == null) {
-            System.out.println("Erro: não pode ficar nulo");
+            throw new IllegalArgumentException(
+                    "Erro: não pode ficar nulo"
+            );
         }
         Optional<Cliente> clienteEncontrado = buscarPorId(cliente.getId());
          if (clienteEncontrado.isPresent()){
-             System.out.println("Erro: já existe cliente cadastrado com esse ID.");
-            return;
+             throw new IdDuplicadoException(
+                     "Erro: já existe cliente cadastrado com esse ID."
+             );
         }
-
         this.clientes.add(cliente);
     }
 

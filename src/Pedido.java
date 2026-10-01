@@ -7,6 +7,7 @@ public class Pedido {
     private List<ItemPedido> carrinho;
     private StatusPedido status;
 
+
     public Pedido(int id, Cliente cliente) {
         this.id = id;
         if (cliente == null){
@@ -26,7 +27,9 @@ public class Pedido {
         if (this.status == StatusPedido.PENDENTE){
             this.status = StatusPedido.PROCESSANDO;
         } else {
-            System.out.println("Não é possível processar um pedido que não está pendente.");
+            throw new IllegalStateException(
+                    "Não é possível processar um pedido que não está pendente."
+            );
         }
     }
 
@@ -34,7 +37,9 @@ public class Pedido {
         if (this.status == StatusPedido.PROCESSANDO){
             this.status = StatusPedido.ENVIADO;
         } else {
-            System.out.println("Não é possível enviar um pedido que não está processando.");
+            throw new IllegalStateException(
+                    "Não é possível enviar um pedido que não está processando."
+            );
         }
     }
 
@@ -42,7 +47,9 @@ public class Pedido {
         if (this.status == StatusPedido.ENVIADO){
             this.status = StatusPedido.ENTREGUE;
         } else {
-            System.out.println("Não é possível entregar um pedido que não foi enviado.");
+            throw new IllegalStateException(
+                    "Não é possível entregar um pedido que não foi enviado."
+            );
         }
     }
 
@@ -51,7 +58,9 @@ public class Pedido {
                 || this.status == StatusPedido.PROCESSANDO){
             this.status = StatusPedido.CANCELADO;
         } else {
-            System.out.println("Não é possível cancelar um pedido que não está pendente/processando.");
+            throw new IllegalStateException(
+                    "Não é possível cancelar um pedido que não está pendente/processando."
+            );
         }
     }
 
@@ -68,7 +77,9 @@ public class Pedido {
         if (item != null && item.subtotal() > 0){
             this.carrinho.add(item);
         }else {
-            System.out.println("Erro: Não é possível adicionar um item inválido no carrinho.");
+            throw new IllegalArgumentException(
+                    "Erro: Não é possível adicionar um item inválido no carrinho."
+            );
         }
     }
 

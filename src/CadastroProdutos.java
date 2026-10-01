@@ -29,6 +29,7 @@ public class CadastroProdutos {
         }
         return Optional.empty();
     }
+
     public List<Produto> listarProdutos(){
         return new ArrayList<>(produtos);
         }

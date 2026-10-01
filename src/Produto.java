@@ -1,4 +1,3 @@
-// Representa um produto da cafeteria
 public class Produto {
     private int id;
     private String nome;
@@ -8,24 +7,17 @@ public class Produto {
     public Produto(int id, String nome, double preco) {
         this.id = id;
         if (nome == null) {
-            System.out.println("Erro: O nome do produto é obrigatório!");
-        } else {
+            throw new IllegalArgumentException("Erro: O nome do produto é obrigatório!");
+        }
             this.nome = nome;
-        }
-        if (preco > 0){
-            this.preco = preco;
-        } else {
-            System.out.println("Erro: O preço deve ser maior que zero.");
-        }
-    }
 
-    public void setStatus(StatusPedido status) {
-        this.status = status;
-    }
-
-    public StatusPedido getStatus() {
-        return status;
-    }
+        if (preco <= 0){
+            throw new IllegalArgumentException(
+                    "Erro: O preço deve ser maior que zero."
+            );
+        }
+        this.preco = preco;
+        }
 
     public int getId() {
         return id;
@@ -41,9 +33,11 @@ public class Produto {
 
     public void setNome(String novoNome) {
         if (novoNome == null || novoNome.isEmpty()) {
-            System.out.println("Erro: O novo nome não pode ser nulo!");
+            throw new IllegalArgumentException (
+                    "Erro: O novo nome não pode ser nulo!"
+            );
         }else {
-            this.nome = novoNome; // altera o nome
+            this.nome = novoNome;
         }
     }
 
@@ -52,10 +46,12 @@ public class Produto {
     }
 
     public void setPreco(double novoPreco) {
-        if (novoPreco > 0){
+        if (novoPreco > 0) {
             this.preco = novoPreco;
-        }else {
-            System.out.println("Erro: O novo preço é inválido! Valor antigo continua mantido.");
+        } else {
+            throw new IllegalArgumentException(
+                    "Erro: O novo preço é inválido! Valor antigo continua mantido."
+            );
         }
     }
 

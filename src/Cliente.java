@@ -16,15 +16,18 @@ public class Cliente {
 
     public Cliente(int id, String nome, String email) {
         this.id = id;
-        //O comando .trim().isEmpty() remove os espaços
-        // vazios das pontas de um texto e verifica se ele ficou completamente vazio
         if (nome == null || nome.isBlank()) {
-            System.out.println("Erro: O nome do cliente é obrigatório!");
+            throw new IllegalArgumentException(
+                    "Erro: O nome do cliente é obrigatório!"
+            );
         }else {
             this.nome = nome;
         }
+
         if (email == null || email.isEmpty()){
-            System.out.println("Erro: O e-mail é obrigatório!");
+            throw new IllegalArgumentException(
+                    "Erro: O e-mail é obrigatório!"
+            );
         }else {
             this.email = email;
         }
@@ -36,9 +39,11 @@ public class Cliente {
 
     public void setNome(String novoNome) {
         if (novoNome == null || novoNome.isEmpty()){
-            System.out.println("Erro: O novo nome não pode estar nulo!");
+            throw new IllegalArgumentException(
+                    "Erro: O novo nome não pode estar nulo!"
+            );
         }else {
-            this.nome = novoNome; // altera o nome do cliente
+            this.nome = novoNome;
         }
     }
 
@@ -47,8 +52,10 @@ public class Cliente {
     }
 
     public void setEmail(String novoEmail) {
-        if (novoEmail == null){
-            System.out.println("Erro: O novo e-mail não pode estar nulo!");
+        if (novoEmail == null || novoEmail.isEmpty()){
+            throw new IllegalArgumentException(
+                    "Erro: O novo e-mail não pode estar nulo!"
+            );
         }else {
             this.email = novoEmail;
         }

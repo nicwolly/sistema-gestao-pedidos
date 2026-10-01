@@ -7,11 +7,19 @@ public class ItemPedido {
 
 
     public ItemPedido(Produto produto, int quantidade) {
+        if (produto == null){
+            throw new IllegalArgumentException(
+                    "Erro: O produto não pode estar nulo."
+            );
+        }
         this.produto = produto;
+
         if (quantidade > 0){
             this.quantidade = quantidade;
         }else {
-            System.out.println("Erro: A quantidade deve ser maior que zero.");
+            throw new IllegalArgumentException(
+                    "Erro: A quantidade deve ser maior que zero."
+            );
         }
     }
 
@@ -31,7 +39,9 @@ public class ItemPedido {
         if (novaQuantidade > 0){
             this.quantidade = novaQuantidade;
         }else {
-            System.out.println("Erro: A nova quantidade é inválida! Quantidade anterior permanece mantida.");
+            throw new IllegalArgumentException(
+                    "Erro: A nova quantidade é inválida! Quantidade anterior permanece mantida."
+            );
         }
     }
 
