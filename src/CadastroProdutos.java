@@ -11,12 +11,15 @@ public class CadastroProdutos {
 
     public void cadastrarProduto(Produto produto){
         if (produto == null){
-            System.out.println("Erro: não pode ficar nulo.");
+            throw new IllegalArgumentException(
+                    "Erro: não pode ficar nulo."
+            );
         }
         Optional<Produto> produtoEncontrado = buscarProdutoPorId(produto.getId());
         if (produtoEncontrado.isPresent()){
-            System.out.println("Erro: já existe produto cadastrado com esse ID.");
-            return;
+            throw new IdDuplicadoException(
+                    "Erro: já existe produto cadastrado com esse ID."
+            );
         }
         this.produtos.add(produto);
     }
