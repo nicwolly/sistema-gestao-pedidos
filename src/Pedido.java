@@ -6,7 +6,7 @@ public class Pedido {
     private Cliente cliente;
     private List<ItemPedido> carrinho;
     private StatusPedido status;
-
+    private FormaPagamento formaPagamento;
 
     public Pedido(int id, Cliente cliente) {
         this.id = id;
@@ -17,6 +17,21 @@ public class Pedido {
         }
         this.carrinho = new ArrayList<>();
         this.status = StatusPedido.PENDENTE;
+    }
+    public void definirFormaPagamento(FormaPagamento formaPagamento){
+        this.formaPagamento = formaPagamento;
+    }
+
+    public void pagar(){
+        if (formaPagamento == null) {
+            throw new IllegalStateException(
+                    "Erro: Nenhuma forma de pagamento definida");
+        }
+        formaPagamento.pagar(calcularTotal());
+    }
+
+    public int getId() {
+        return id;
     }
 
     public StatusPedido getStatus(){
@@ -112,4 +127,3 @@ public class Pedido {
                 "Valor total: R$ " + String.format("%.2f", calcularTotal());
     }
 }
-
